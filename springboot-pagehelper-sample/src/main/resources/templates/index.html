@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+	<div id="mainContainer" class="container">
+		<div id="mainContainerRepleace" class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th data-field="id">ID</th>
+						<th data-field=“category”>类别</th>
+						<th data-field="name">名字</th>
+						<th data-field="price">价格(元)</th>
+						<th data-field="discount">优惠</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${page.list}">
+						<td th:text="${product.id}">1</td>
+						<td th:text="${product.category}">1</td>
+						<td th:text="${product.name}">1</td>
+						<td th:text="${product.price}">1</td>
+						<td th:text="${product.discount}">1</td>
+					</tr>
+				</tbody>
+			</table>
+			<div th:replace="~{fragments/page :: page}">...</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+
+</body>
+</html>
