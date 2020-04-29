@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>文件下载</title>
+<script src="../static/js/jquery-1.10.2.min.js"
+	th:src="@{/js/jquery-1.10.2.min.js}"></script>
+</head>
+<body>
+	<div>
+	<h2>文件下载</h2>
+
+	<form action="downloadFile" method="POST" enctype="multipart/form-data">
+		<p>
+			文件名：<input type="text" name="fileName" />
+		</p>
+		<p>
+			<input type="submit" value="下载文件" />
+		</p>
+	</form>
+	</div>
+</body>
+</html>

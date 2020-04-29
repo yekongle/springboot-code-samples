@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>单个文件上传</title>
+<script src="../static/js/jquery-1.10.2.min.js"
+	th:src="@{/js/jquery-1.10.2.min.js}"></script>
+</head>
+<body>
+	<div th:if="${message}">
+		<h2 style="color: red;" th:text="${message}" />
+	</div>
+
+	<div>
+		<h2>单个文件上传</h2>
+		<form action="singleFileUpload" method="POST"
+			enctype="multipart/form-data">
+			<p>
+				文件：<input type="file" name="file" />
+			</p>
+			<p>
+				<input type="submit" value="上传" />
+			</p>
+		</form>
+	</div>
+
+	<div>
+		<table border="1">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>contentType</td>
+					<td>size</td>
+					<td>uploadDate</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${files.size()} eq 0">
+					<td colspan="4">没有文件信息！！</td>
+				</tr>
+				<tr th:each="file : ${files}">
+					<td th:text="${file.name}" /></td>
+					<td th:text="${file.contentType}"></td>
+					<td th:text="${file.size}"></td>
+					<td th:text="${file.uploadDate}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+<!-- <script>
+	function upload() {
+		var formData = new FormData();
+		formData.append("file", file.files[0]);
+		$.ajax({
+					url : "http://127.0.0.1:8080/singleFileUpload",
+					type : "post",
+					dataType : "json",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						$("#result").html(
+								"返回状态码：" + data.code + ",返回信息：" + data.message);
+					},
+					error : function() {
+						$("#result").html("发生未知错误");
+					}
+				})
+	}
+</script> -->
+
+</html>

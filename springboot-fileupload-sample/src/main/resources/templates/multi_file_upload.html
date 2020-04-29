@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>多个文件上传</title>
+<script src="../static/js/jquery-1.10.2.min.js"
+	th:src="@{/js/jquery-1.10.2.min.js}"></script>
+</head>
+<body>
+	<div th:if="${message}">
+		<h2 style="color: red;" th:text="${message}" />
+	</div>
+
+	<div>
+		<h2>多文件上传</h2>
+		<form action="/multiFileUpload" method="POST"
+			enctype="multipart/form-data">
+			<p>
+				多文件上传：<input type="file" name="files" multiple="multiple" />
+			</p>
+			<p>
+				<input type="submit" value="上传" />
+			</p>
+		</form>
+	</div>
+
+	<div>
+		<table border="1">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>contentType</td>
+					<td>size</td>
+					<td>uploadDate</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${files.size()} eq 0">
+					<td colspan="4">没有文件信息!</td>
+				</tr>
+				<tr th:each="file : ${files}">
+					<td th:text="${file.name}" /></td>
+					<td th:text="${file.contentType}"></td>
+					<td th:text="${file.size}"></td>
+					<td th:text="${file.uploadDate}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</body>
+</html>
