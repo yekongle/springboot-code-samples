@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org"><!-- Thymeleaf的命名空间，将静态页面转换为动态的视图 -->
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <!-- 需要动态处理的元素使用 th: 为前缀，通过 ${} 访问 model中的属性-->
+            <h3 class="panel-title" th:text="${title}">title</h3>
+        </div>
+        <div class="panel-body">
+            <!--数据判断-->
+            <div th:if="${not #lists.isEmpty(products)}">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <!--数据迭代-->
+                        <tr th:each="product: ${products}">
+                            <td th:texts="${product.category}">Category</td>
+                            <td th:text="${product.name}">name</td>
+                            <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}">0.99</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+
+<!--在 javascript 中访问model属性-->
+<script th:inline="javascript">
+  	var title = [[${title}]];
+  	console.log(title);
+</script>
+
+</body>
+</html>
