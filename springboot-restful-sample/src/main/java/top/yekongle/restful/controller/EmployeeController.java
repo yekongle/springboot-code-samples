@@ -2,6 +2,7 @@ package top.yekongle.restful.controller;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import top.yekongle.restful.repository.EmployeeRepository;
  */
 
 // @RestController 注解会使每个方法返回值直接写入到response body中，而不是去渲染模板
+@Slf4j
 @RestController
 public class EmployeeController {
 	@Autowired
@@ -43,6 +45,7 @@ public class EmployeeController {
 	 */
 	@PostMapping("/employees")
 	public ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
+		log.info(newEmployee.toString());
 		repository.save(newEmployee);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newEmployee);
 	}
@@ -64,6 +67,7 @@ public class EmployeeController {
 	 */
 	@PutMapping("/employees/{id}")
 	public ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+		log.info(newEmployee.toString());
 		// 根据id查找员工，找到就update信息再保存，找不到就直接新建一个员工
 		repository.findById(id)
 			.map(employee -> {
