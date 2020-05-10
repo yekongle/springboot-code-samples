@@ -27,7 +27,7 @@
                     <tbody>
                         <!--数据迭代-->
                         <tr th:each="product: ${products}">
-                            <td th:texts="${product.category}">Category</td>
+                            <td th:text="${product.category}">Category</td>
                             <td th:text="${product.name}">name</td>
                             <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}">0.99</td>
                         </tr>
