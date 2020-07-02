@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org"><!-- Thymeleaf的命名空间，将静态页面转换为动态的视图 -->
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <title th:utext="#{label.pages.home.title}">home</title>
+</head>
+<body>
+    <div class="container">
+            <h1 class="alert alert-danger" th:utext="#{message.email.config.error}">error</h1>
+    </div>
+</body>
+
+</html>
