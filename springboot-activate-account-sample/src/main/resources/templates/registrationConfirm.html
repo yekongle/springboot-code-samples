@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <title th:utext="#{label.pages.home.title}">home</title>
+</head>
+<body>
+<div>
+
+<h1 class="alert alert-info" th:utext="#{message.regSucc}">success</h1>
+<br/>
+<span th:if="${token != null}" th:utext="#{token.message}">token</span>
+<span th:utext="${token}">token</span>
+<br/>
+<a class="btn btn-primary" th:href="@{/login}" th:utext="#{label.login}">login</a>
+</div>          
+</body>
+</html>
