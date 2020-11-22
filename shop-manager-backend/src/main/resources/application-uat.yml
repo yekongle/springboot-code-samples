@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: hank
+    url: jdbc:mysql://192.168.43.206:3306/mytest?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    druid:
+      max-active: 30
+      min-idle: 5
+      max-wait: 10000
+      validationQuery: SELECT 'x'
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 50MB
+#  mvc:
+##    static-path-pattern: /image/**
+#    static-path-pattern: /static/**
+#    view:
+#      prefix: classpath:/templates/
+#      suffix: .html
+
+# 上传到本地磁盘
+#  resources:
+#    static-locations: file:D://photos//image//
+mybatis:
+  type-aliases-package: top.yekongle.shopmanager.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    top.yekongle.shopmanager.mapper: INFO
+
+file:
+  upload-path: /root
+
